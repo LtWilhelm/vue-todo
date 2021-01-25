@@ -4,7 +4,7 @@
   <!-- banana -->
   <Header />
   <div class="container">
-    <TodoList @updateTodo="updateTodo" :todos="todos" />
+    <TodoList @updateTodo="updateTodo" @removeTodo="removeTodo" :todos="todos" />
   </div>
 </template>
 

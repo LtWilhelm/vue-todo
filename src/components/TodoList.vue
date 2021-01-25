@@ -1,7 +1,7 @@
 <template>
   <ul>
     <!-- <li v-for="todo in todos" v-bind:key="todo.id">{{todo.desc}}</li> -->
-    <TodoListItem @updateTodo="$emit('updateTodo', $event)" v-for="todo in todos" v-bind:key="todo.id" :todo="todo" />
+    <TodoListItem @updateTodo="$emit('updateTodo', $event)" @removeTodo="$emit('removeTodo', $event)" v-for="todo in todos" v-bind:key="todo.id" :todo="todo" />
   </ul>
 </template>
 
@@ -16,7 +16,7 @@ import {ITodo} from '../models/todo';
   components: {
     TodoListItem
   },
-  emits: ['updateTodo']
+  emits: ['updateTodo', 'removeTodo']
 })
 export default class TodoList extends Vue {
   todos!: ITodo[]
