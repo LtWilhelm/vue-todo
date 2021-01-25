@@ -4,7 +4,7 @@
   <!-- banana -->
   <Header />
   <div class="container">
-    <TodoList :todos="todos" />
+    <TodoList @updateTodo="updateTodo" :todos="todos" />
   </div>
 </template>
 
@@ -27,7 +27,6 @@ export default class App extends Vue {
     const index = this.todos.findIndex((t) => t.id === todo.id);
 
     this.todos[index] = todo;
-
     this.saveTodos();
   };
 

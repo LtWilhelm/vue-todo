@@ -1,7 +1,7 @@
 <template>
   <ul>
     <!-- <li v-for="todo in todos" v-bind:key="todo.id">{{todo.desc}}</li> -->
-    <TodoListItem v-for="todo in todos" v-bind:key="todo.id" :todo="todo" />
+    <TodoListItem @updateTodo="$emit('updateTodo', $event)" v-for="todo in todos" v-bind:key="todo.id" :todo="todo" />
   </ul>
 </template>
 
@@ -15,7 +15,8 @@ import {ITodo} from '../models/todo';
   },
   components: {
     TodoListItem
-  }
+  },
+  emits: ['updateTodo']
 })
 export default class TodoList extends Vue {
   todos!: ITodo[]
