@@ -5,6 +5,7 @@
   <Header />
   <div class="container">
     <TodoList @updateTodo="updateTodo" @removeTodo="removeTodo" :todos="todos" />
+    <Composer @addTodo="addTodo" />
   </div>
 </template>
 
@@ -12,16 +13,21 @@
 import { Options, Vue } from "vue-class-component";
 import Header from "./components/Header.vue";
 import TodoList from "./components/TodoList.vue";
+import Composer from './components/Composer.vue';
 import { ITodo } from "./models/todo";
 
 @Options({
   components: {
     Header,
     TodoList,
+    Composer
   },
+
 })
 export default class App extends Vue {
   todos: ITodo[] = JSON.parse(localStorage.getItem("todos") || "[]");
+  
+  
 
   updateTodo = (todo: ITodo) => {
     const index = this.todos.findIndex((t) => t.id === todo.id);
