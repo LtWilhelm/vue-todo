@@ -4,42 +4,41 @@
   <!-- banana -->
   <Header />
   <div class="container">
-    <TodoList @updateTodo="updateTodo" @removeTodo="removeTodo" :todos="todos" />
+    <TodoList :todos="todos" />
     <Composer @addTodo="addTodo" />
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import { Provide } from "vue-property-decorator";
 import Header from "./components/Header.vue";
 import TodoList from "./components/TodoList.vue";
-import Composer from './components/Composer.vue';
+import Composer from "./components/Composer.vue";
 import { ITodo } from "./models/todo";
+// import { provide } from "vue";
 
 @Options({
   components: {
     Header,
     TodoList,
-    Composer
+    Composer,
   },
-
 })
 export default class App extends Vue {
   todos: ITodo[] = JSON.parse(localStorage.getItem("todos") || "[]");
-  
-  
 
-  updateTodo = (todo: ITodo) => {
+  @Provide("updateTodo") private updateTodo = (todo: ITodo) => {
     const index = this.todos.findIndex((t) => t.id === todo.id);
 
     this.todos[index] = todo;
     this.saveTodos();
   };
 
-  removeTodo = (todo: ITodo) => {
+  @Provide("removeTodo") private removeTodo = (todo: ITodo) => {
     const index = this.todos.findIndex((t) => t.id === todo.id);
 
-    this.todos.splice(index);
+    this.todos.splice(index, 1);
 
     this.saveTodos();
   };
