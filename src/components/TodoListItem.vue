@@ -3,8 +3,6 @@
     {{ todo.desc }}
     <button @click="updateTodo({...todo, done: !todo.done})">{{!todo.done ? 'Do' : 'Undo'}} Thing</button>
     <button @click="removeTodo(todo)">Remove</button>
-    <!-- <button @click="$emit('updateTodo', {...todo, done: !todo.done})">{{!todo.done ? 'Do' : 'Undo'}} Thing</button>
-    <button @click="$emit('removeTodo', todo)">Remove</button> -->
   </li>
 </template>
 
@@ -21,8 +19,6 @@ import {Inject} from 'vue-property-decorator';
       done: Boolean,
     },
   },
-  // emits: ['updateTodo', 'removeTodo'],
-  // inject: ['updateTodo, removeTodo']
 })
 export default class TodoListItem extends Vue {
   todo!: ITodo;
